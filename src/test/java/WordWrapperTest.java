@@ -68,7 +68,25 @@ public class WordWrapperTest {
 
     }
 
+    //Test should output the strings with `\n` on new lines and print strings without `\n` on the same line.
+    @Test
+    public void printStrings() {
+        //Instantiate List
+        List<String> listOfStrings = new ArrayList<>();
 
+        //add multiple strings with `\n` and without `\n` to list
+        listOfStrings.add("Hello, my name is Karen\n");
+        listOfStrings.add("Hi, Karen. How are you?\n");
+        listOfStrings.add("Random string\n");
+        listOfStrings.add("Another random string\n");
+        listOfStrings.add("String without new line character.");
+        listOfStrings.add("another string without new line character.");
+
+        //print out each string to the console
+        for(String string : listOfStrings)
+            System.out.print(string);
+
+    }
 
     //Helper method that splits strings for tests.
     private List<String> createListOfStringsWithMaxLength(List<String> stringList, int maxLineLength) {

@@ -20,12 +20,62 @@ public class WordWrapperTest {
     public void breakTextNoLongerThanMaxLength() {
         //Local Variable Instantiation
         String randomString = createRandomString();
-        List<String> maxLengthStringList = new ArrayList<>();
         int maxLineLength = 20;
-        StringBuilder concatString = new StringBuilder();
+
 
         //Splits string on spaces and adds each "word" to stringList
         List<String> stringList = new ArrayList<>(Arrays.asList(randomString.split(" ")));
+
+        //accesses helper method to create a list of strings that are no longer than the max line length specified in the parameters
+        List<String> maxLengthStringList = new ArrayList<>(createListOfStringsWithMaxLength(stringList, maxLineLength));
+
+        //Tests that each line is no longer than the max length
+        for (String line : maxLengthStringList) {
+            Assertions.assertTrue(line.length() < maxLineLength);
+        }
+    }
+
+
+
+    //Should append a newline character to the end of each line
+    @Test
+    public void addNewLineCharacterAfterTextBreaks() {
+        //Local Variable Instantiation
+        List<String> maxLengthStringList = new ArrayList<>();
+        int maxLineLength = 20;
+        //accesses helper method to create long string of random 'words'
+        String randomString = createRandomString();
+
+        //Splits string on spaces and adds each "word" to stringList
+        List<String> stringList = new ArrayList<>(Arrays.asList(randomString.split(" ")));
+
+        //accesses helper method to create a list of strings that are no longer than the max line length specified in the parameters
+        List<String> listOfStringsWithMaxLength = createListOfStringsWithMaxLength(stringList, maxLineLength);
+
+        //Tests that each line is no longer than the max length and that "\n" is being added to each string
+        for (int i = 0; i < listOfStringsWithMaxLength.size(); i++) {
+            //appends '\n' to end of string
+            String newString = listOfStringsWithMaxLength.get(i) + "\n";
+            //adds updated string to arraylist
+            maxLengthStringList.add(i, newString);
+
+            //Tests that each string line is no longer than max line length ** We subtract 2 characters from the length to account for the '\n'
+            Assertions.assertTrue(newString.length() - 2 < maxLineLength);
+            //Tests that each string line has '\n' appended to the end
+            Assertions.assertEquals("\n", maxLengthStringList.get(i).substring((newString.length() - 1), newString.length()));
+
+        }
+
+    }
+
+
+
+    //Helper method that splits strings for tests.
+    private List<String> createListOfStringsWithMaxLength(List<String> stringList, int maxLineLength) {
+
+        StringBuilder concatString = new StringBuilder();
+        List<String> maxLengthStringList = new ArrayList<>();
+
 
         //Loops through each word in stringList
         for (String word : stringList) {
@@ -39,7 +89,7 @@ public class WordWrapperTest {
                 concatString = new StringBuilder(word);
                 concatString.append(" ");
 
-            //else if appending the current iterated word to the concatString does not go over the length limit,
+                //else if appending the current iterated word to the concatString does not go over the length limit,
             } else {
                 //append current iterated word to concatString
                 concatString.append(word);
@@ -48,10 +98,7 @@ public class WordWrapperTest {
             }
         }
 
-        //Tests that each line is no longer than the max length
-        for (String line : maxLengthStringList) {
-            Assertions.assertTrue(line.length() < maxLineLength);
-        }
+        return maxLengthStringList;
     }
 
 

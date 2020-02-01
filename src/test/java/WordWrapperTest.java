@@ -8,9 +8,10 @@ import java.util.*;
 
 public class WordWrapperTest {
 
-//The wrap function should break the text into lines no longer than the max length
-//The wrap function should break the text on word boundaries by replacing a space with a newline character
-//The wrap function should output the resulting text
+//    TODOS
+    //The wrap function should break the text into lines no longer than the max length
+    //The wrap function should break the text on word boundaries by replacing a space with a newline character
+    //The wrap function should output the resulting text
 
 
 

@@ -13,7 +13,49 @@ public class WordWrapperTest {
     //The wrap function should break the text on word boundaries by replacing a space with a newline character
     //The wrap function should output the resulting text
 
+    //checks if maxLength parameter is numerical, returns true if maxLength can be parsed as a Double, fails if it can't
+    @Test
+    public void checkLengthParamOfTypeInteger() {
+        String maxLength = "20";
 
+        try {
+            Double.parseDouble(maxLength);
+            Assertions.assertTrue(true);
+        } catch (NumberFormatException e) {
+            Assertions.fail();
+        }
+
+    }
+
+    //checks if string parameter is not null, return true with non null string
+    @Test
+    public void checkTextParamIsNotNull() {
+        String string = "This is a string.";
+
+        Assertions.assertNotNull(string);
+
+    }
+
+    //checks if maxLength parameter is not zero, returns true if maxLength is greater than zero, fails if not
+    @Test
+    public void checkLengthParamIsNotZero() {
+        int maxLength = 20;
+
+        try {
+
+            if (maxLength > 0) {
+
+                Assertions.assertTrue(true);
+
+            }
+
+        } catch (Exception e) {
+
+            Assertions.fail();
+
+        }
+
+    }
 
     //Should break the text into lines no longer than the max length
     @Test
@@ -56,7 +98,7 @@ public class WordWrapperTest {
         for (int i = 0; i < listOfStringsWithMaxLength.size(); i++) {
             //appends '\n' to end of string
             String newString = listOfStringsWithMaxLength.get(i) + "\n";
-            //adds updated string to arraylist
+            //adds updated string to new list of strings that meet max length criteria
             maxLengthStringList.add(i, newString);
 
             //Tests that each string line is no longer than max line length ** We subtract 2 characters from the length to account for the '\n'

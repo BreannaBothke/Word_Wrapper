@@ -24,9 +24,8 @@ public class WordWrapper {
 
             //else if text parameter is empty
             } else if (text.isEmpty() || (text.trim().length() == 0)) {
-                //then print out error message to the console
-                System.out.println("Error: text parameter cannot be an empty string.");
-
+                //then return empty string
+                return "";
             //else if text parameter is not empty and max Line Length parameter is greater than 0
             } else if (!text.isEmpty() && maxLineLength > 0) {
                 //then continue on

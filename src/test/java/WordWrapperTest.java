@@ -1,38 +1,32 @@
 package test.java;
 
+import main.WordWrapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class WordWrapperTest {
+
+    private static final int CONST_MAX_LINE_LENGTH = 30;
+    private static final int CONST_NUM_CHAR_COUNT = 0;
 
 //    TODOS
     //The wrap function should break the text into lines no longer than the max length
     //The wrap function should break the text on word boundaries by replacing a space with a newline character
     //The wrap function should output the resulting text
 
-    //checks if maxLength parameter is numerical, returns true if maxLength can be parsed as a Double, fails if it can't
+    //checks if string parameter is not empty
+    //returns an empty string if string param is empty
     @Test
-    public void checkLengthParamOfTypeInteger() {
-        String maxLength = "20";
+    public void checkTextParamIsNotEmpty() {
+        String results;
 
-        try {
-            Double.parseDouble(maxLength);
-            Assertions.assertTrue(true);
-        } catch (NumberFormatException e) {
-            Assertions.fail();
-        }
-
-    }
-
-    //checks if string parameter is not null, return true with non null string
-    @Test
-    public void checkTextParamIsNotNull() {
-        String string = "This is a string.";
-
-        Assertions.assertNotNull(string);
+        results = WordWrapper.wrap(" ", CONST_MAX_LINE_LENGTH);
+        assertEquals(CONST_NUM_CHAR_COUNT, results.length());
 
     }
 
@@ -130,6 +124,9 @@ public class WordWrapperTest {
 
     }
 
+//    @Test
+//    public void
+
     //Helper method that splits strings for tests.
     private List<String> createListOfStringsWithMaxLength(List<String> stringList, int maxLineLength) {
 
@@ -181,4 +178,6 @@ public class WordWrapperTest {
         //return longString variable
         return longString.toString();
     }
+
+
 }

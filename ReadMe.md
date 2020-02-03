@@ -1,4 +1,4 @@
-##Steps to run in intellij:
+## Steps to run in intellij:
 
 Download Intellij: https://www.jetbrains.com/idea/download/#section=mac
 
@@ -6,7 +6,7 @@ For installation instructions, click `installation instructions` link on the lef
 
 ---
 
-####After installation:
+#### After installation:
 
 
 Run:
@@ -16,7 +16,7 @@ After cloning, you can `'cd'` into the project and run the command `'git log'` t
 
 I built this coding test in intellij.
  
-###Instructions to run application in intellij:
+### Instructions to run application in intellij:
 
      > open Word_Wrapper folder in intellij
      
@@ -40,11 +40,11 @@ I built this coding test in intellij.
      
      > Select the play icon on the left hand side of the Main class and select `Run Main.main()`
 
-##Application Requirements:
+## Application Requirements:
 
-####Take Home Test
+#### Take Home Test
 
-###Description:
+### Description:
 
 >You are working on a word processing application and want to be able to take a string and insert line breaks at just the right places
 so that it will fit into a column of a given length. You want to break lines at word boundaries.
@@ -64,7 +64,7 @@ This exercise is to implement the following method:
 
 >3.The wrap function should output the resulting text
 
-###Requirements
+### Requirements
 
 >* Please complete the exercise in Java
 >* Please submit your code in a local git repo (zipped and emailed, not on github etc)

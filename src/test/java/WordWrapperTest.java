@@ -61,7 +61,7 @@ public class WordWrapperTest {
         String stringOf10 = results.substring(0, CONST_MAX_LINE_LENGTH_10);
         int count = 1;
         int startOfLine = 0;
-        //index of first occurence of `\n`
+        //index of first occurrence of `\n`
         int endOfLine = stringOf10.indexOf("\n");
 
         //count number of `\n` instances in string
@@ -96,7 +96,51 @@ public class WordWrapperTest {
 
 
 
-  
+    //Tests if `\n` is replacing a space after maxLineLength criteria is being met
+    // and the behavior of when a word has a greater length than the maxLength criteria
+    //
+    @Test
+    public void replaceSpaceWithNewLineCharacterAfter5MaxLineLength() {
+
+        //call wrap method, returns a string with newline characters
+        String results = WordWrapper.wrap(CONST_STRING, CONST_MAX_LINE_LENGTH_5);
+
+        //get first line of 5 characters
+        String stringOf5 = results.substring(0, CONST_MAX_LINE_LENGTH_5);
+        int count = 1;
+        int startOfLine = 0;
+        //index of first occurrence of `\n`
+        int endOfLine = stringOf5.indexOf("\n");
+
+        //count number of `\n` instances in string
+        int numOfNewChars = countNewLineCharacters(results) + 1;
+
+        //iterate through lines
+        while (count <= numOfNewChars) {
+            //get first line
+            String line = results.substring(startOfLine, endOfLine + 1);
+            System.out.println(line);
+
+            //set startOfLine to value of previous line endOfLine
+            startOfLine = endOfLine + 1;
+
+            //find end of next line
+            endOfLine += results.substring(startOfLine).indexOf("\n") + 1;
+
+            //increment count
+            count++;
+
+            //Tests if there's a `\n` at the end of each line
+            assertEquals("\n", line.substring(line.length() - 1));
+
+            //Tests if `\n` is replacing spaces and not being appended after spaces
+            //Length of string being passed in should match length of string being returned
+            assertEquals(CONST_STRING.length(), results.length() - 1);
+
+        }
+
+
+    }
 
     //Should break the text into lines no longer than the max length
     @Test

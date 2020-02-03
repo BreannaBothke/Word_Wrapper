@@ -32,6 +32,8 @@ public class WordWrapperTest {
         resultsNotEmpty = WordWrapper.wrap(CONST_STRING, CONST_MAX_LINE_LENGTH_30);
         resultsEmpty = WordWrapper.wrap(" ", CONST_MAX_LINE_LENGTH_30);
 
+        assertNotNull(resultsEmpty);
+        assertNotNull(resultsNotEmpty);
         assertTrue(resultsNotEmpty.length() > CONST_ZERO_CHAR_COUNT);
         assertEquals(CONST_ZERO_CHAR_COUNT, resultsEmpty.length());
 
@@ -44,6 +46,7 @@ public class WordWrapperTest {
 
         String results = WordWrapper.wrap(CONST_STRING, -2);
 
+        assertNotNull(results);
         assertEquals("Error: MaxLineLength needs to be more than zero.", results);
 
 
@@ -82,6 +85,7 @@ public class WordWrapperTest {
             //increment count
             count++;
 
+            assertNotNull(line);
             //Tests if there's a `\n` at the end of each line
             assertEquals("\n", line.substring(line.length() - 1));
 
@@ -130,6 +134,7 @@ public class WordWrapperTest {
             //increment count
             count++;
 
+            assertNotNull(line);
             //Tests if there's a `\n` at the end of each line
             assertEquals("\n", line.substring(line.length() - 1));
 
@@ -158,7 +163,8 @@ public class WordWrapperTest {
 
         //Tests that each line is no longer than the max length
         for (String line : maxLengthStringList) {
-            Assertions.assertTrue(line.length() < maxLineLength);
+            assertNotNull(line);
+            assertTrue(line.length() < maxLineLength);
         }
     }
 
@@ -186,10 +192,11 @@ public class WordWrapperTest {
             //adds updated string to new list of strings that meet max length criteria
             maxLengthStringList.add(i, newString);
 
+            assertNotNull(newString);
             //Tests that each string line is no longer than max line length ** We subtract 2 characters from the length to account for the '\n'
-            Assertions.assertTrue(newString.length() - 2 < maxLineLength);
+            assertTrue(newString.length() - 2 < maxLineLength);
             //Tests that each string line has '\n' appended to the end
-            Assertions.assertEquals("\n", maxLengthStringList.get(i).substring((newString.length() - 1), newString.length()));
+            assertEquals("\n", maxLengthStringList.get(i).substring((newString.length() - 1), newString.length()));
 
         }
 
@@ -210,8 +217,10 @@ public class WordWrapperTest {
         listOfStrings.add("another string without new line character.");
 
         //print out each string to the console
-        for(String string : listOfStrings)
+        for(String string : listOfStrings) {
+            assertNotNull(string);
             System.out.print(string);
+        }
 
     }
 

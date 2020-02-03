@@ -11,14 +11,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WordWrapperTest {
 
-    private static final int CONST_MAX_LINE_LENGTH = 30;
+    private static final int CONST_MAX_LINE_LENGTH_30 = 30;
+    private static final int CONST_MAX_LINE_LENGTH_10 = 10;
     private static final int CONST_ZERO_CHAR_COUNT = 0;
     private static final String CONST_STRING = "The fox jumped over the lazy dog.";
 
-//    TODOS
-    //The wrap function should break the text into lines no longer than the max length
-    //The wrap function should break the text on word boundaries by replacing a space with a newline character
-    //The wrap function should output the resulting text
+   /* TODO
+       * The wrap function should break the text into lines no longer than the max length
+       * The wrap function should break the text on word boundaries by replacing a space with a newline character
+       * The wrap function should output the resulting text
+   */
 
     //checks method behavior if string parameter is empty or not
     //returns an empty string if string param is empty
@@ -26,8 +28,8 @@ public class WordWrapperTest {
     public void textParamIsEmptyOrNotBehavior() {
         String resultsNotEmpty, resultsEmpty;
 
-        resultsNotEmpty = WordWrapper.wrap(CONST_STRING, CONST_MAX_LINE_LENGTH);
-        resultsEmpty = WordWrapper.wrap(" ", CONST_MAX_LINE_LENGTH);
+        resultsNotEmpty = WordWrapper.wrap(CONST_STRING, CONST_MAX_LINE_LENGTH_30);
+        resultsEmpty = WordWrapper.wrap(" ", CONST_MAX_LINE_LENGTH_30);
 
         assertTrue(resultsNotEmpty.length() > CONST_ZERO_CHAR_COUNT);
         assertEquals(CONST_ZERO_CHAR_COUNT, resultsEmpty.length());
@@ -42,6 +44,32 @@ public class WordWrapperTest {
         String results = WordWrapper.wrap(CONST_STRING, -2);
 
         assertEquals("Error: MaxLineLength needs to be more than zero.", results);
+
+
+    }
+
+    //Tests if `\n` is replacing a space after maxLineLength criteria is being met
+    //
+    @Test
+    public void replaceSpaceWithNewLineCharacterAfter10MaxLineLength() {
+
+        String results = WordWrapper.wrap(CONST_STRING, CONST_MAX_LINE_LENGTH_10);
+        int count = 0;
+
+        //iterate through lines
+        while (count < results.length()) {
+            String line = results.substring(count, CONST_MAX_LINE_LENGTH_10);
+
+            //Tests if there's a `\n` at the end of each line
+            assertEquals("\n", line.substring(line.length() - 2, line.length() - 1));
+
+            //Tests if `\n` is replacing spaces and not being appended after spaces
+            //Length of string being passed in should match length of string being returned
+            assertEquals(CONST_STRING.length(), results.length());
+
+            //increment count by maxLineLength of 10
+            count += CONST_MAX_LINE_LENGTH_10;
+        }
 
 
     }

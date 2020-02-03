@@ -21,11 +21,11 @@ public class WordWrapper {
             if (maxLineLength <= 0) {
                 //then print out error message to the console
                 return "Error: MaxLineLength needs to be more than zero.";
-            //else if text parameter is empty
+                //else if text parameter is empty
             } else if (text.isEmpty() || (text.trim().length() == 0)) {
                 //then return empty string
                 return "";
-            //else if text parameter is not empty and max Line Length parameter is greater than 0
+                //else if text parameter is not empty and max Line Length parameter is greater than 0
             } else {
                 //then continue on
 
@@ -65,30 +65,30 @@ public class WordWrapper {
         //Loops through each word in stringList
         for (String word : stringList) {
 
-
-            //If appending a word to the concatString goes over the length limit,
-            if ((concatString.length() + word.length()) > maxLineLength) {
-                //then add current concatString to maxLengthStringList,
-                maxLengthStringList.add(concatString.toString());
-                //null concatString
-                concatString.setLength(0);
-                //rebuild concatString with current iterated word
-                concatString = new StringBuilder(word);
-                concatString.append(" ");
-
-                //else if appending the current iterated word to the concatString does not go over the length limit,
-            } else {
-                //append current iterated word to concatString
-                concatString.append(word);
-                concatString.append(" ");
-
-            }
-
-                //if last iteration of the list
-                if(word.equals(stringList.get(stringList.size() - 1))) {
-                    //add last concatString to maxLengthStringList
+                //if appending a word to the concatString goes over the length limit,
+                if ((concatString.length() + word.length()) > maxLineLength) {
+                    //then add current concatString to maxLengthStringList,
                     maxLengthStringList.add(concatString.toString());
+                    //null concatString
+                    concatString.setLength(0);
+                    //rebuild concatString with current iterated word
+                    concatString = new StringBuilder(word);
+                    concatString.append(" ");
+
+                    //else if appending the current iterated word to the concatString does not go over the length limit,
+                } else {
+                    //append current iterated word to concatString
+                    concatString.append(word);
+                    concatString.append(" ");
+
                 }
+
+
+            //if last iteration of the list
+            if (word.equals(stringList.get(stringList.size() - 1))) {
+                //add last concatString to maxLengthStringList
+                maxLengthStringList.add(concatString.toString());
+            }
 
         }
         //return list of updated strings

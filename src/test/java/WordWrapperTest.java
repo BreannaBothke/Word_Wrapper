@@ -65,7 +65,7 @@ public class WordWrapperTest {
         int endOfLine = stringOf10.indexOf("\n");
 
         //count number of `\n` instances in string
-        int numOfNewChars = countNewLineCharacters(results) + 1;
+        int numOfNewChars = countNewLineCharacters(results);
 
         //iterate through lines
         while (count <= numOfNewChars) {
@@ -113,7 +113,7 @@ public class WordWrapperTest {
         int endOfLine = stringOf5.indexOf("\n");
 
         //count number of `\n` instances in string
-        int numOfNewChars = countNewLineCharacters(results) + 1;
+        int numOfNewChars = countNewLineCharacters(results);
 
         //iterate through lines
         while (count <= numOfNewChars) {
@@ -218,12 +218,10 @@ public class WordWrapperTest {
 
     private int countNewLineCharacters(String string) {
         int count = 0;
-        String[] temp = string.split(" ");
+        String[] temp = string.split("\\r?\\n");
 
         //Loops through list of strings
         for (String s : temp) {
-            //if current string contains newline character
-            if (s.contains("\n"))
                 //increment count
                 count++;
         }

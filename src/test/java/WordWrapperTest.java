@@ -12,42 +12,37 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WordWrapperTest {
 
     private static final int CONST_MAX_LINE_LENGTH = 30;
-    private static final int CONST_NUM_CHAR_COUNT = 0;
+    private static final int CONST_ZERO_CHAR_COUNT = 0;
+    private static final String CONST_STRING = "The fox jumped over the lazy dog.";
 
 //    TODOS
     //The wrap function should break the text into lines no longer than the max length
     //The wrap function should break the text on word boundaries by replacing a space with a newline character
     //The wrap function should output the resulting text
 
-    //checks if string parameter is not empty
+    //checks method behavior if string parameter is empty or not
     //returns an empty string if string param is empty
     @Test
-    public void checkTextParamIsNotEmpty() {
-        String results;
+    public void textParamIsEmptyOrNotBehavior() {
+        String resultsNotEmpty, resultsEmpty;
 
-        results = WordWrapper.wrap(" ", CONST_MAX_LINE_LENGTH);
-        assertEquals(CONST_NUM_CHAR_COUNT, results.length());
+        resultsNotEmpty = WordWrapper.wrap(CONST_STRING, CONST_MAX_LINE_LENGTH);
+        resultsEmpty = WordWrapper.wrap(" ", CONST_MAX_LINE_LENGTH);
+
+        assertTrue(resultsNotEmpty.length() > CONST_ZERO_CHAR_COUNT);
+        assertEquals(CONST_ZERO_CHAR_COUNT, resultsEmpty.length());
+
 
     }
 
-    //checks if maxLength parameter is not zero, returns true if maxLength is greater than zero, fails if not
+    //checks if Error message is being returned if maxLength parameter is zero or less
     @Test
-    public void checkLengthParamIsNotZero() {
-        int maxLength = 20;
+    public void maxLengthParamZeroOrLessBehavior() {
 
-        try {
+        String results = WordWrapper.wrap(CONST_STRING, -2);
 
-            if (maxLength > 0) {
+        assertEquals("Error: MaxLineLength needs to be more than zero.", results);
 
-                Assertions.assertTrue(true);
-
-            }
-
-        } catch (Exception e) {
-
-            Assertions.fail();
-
-        }
 
     }
 
@@ -124,8 +119,6 @@ public class WordWrapperTest {
 
     }
 
-//    @Test
-//    public void
 
     //Helper method that splits strings for tests.
     private List<String> createListOfStringsWithMaxLength(List<String> stringList, int maxLineLength) {

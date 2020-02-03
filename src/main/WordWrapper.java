@@ -17,17 +17,16 @@ public class WordWrapper {
         StringBuilder newLineString = new StringBuilder();
 
         try {
-            //if text parameter is not empty and the max line length parameter is 0 or less,
-            if (!text.isEmpty() && maxLineLength <= 0) {
+            //if the max line length parameter is 0 or less,
+            if (maxLineLength <= 0) {
                 //then print out error message to the console
-                System.out.println("Error: maxLineLength parameter needs to be more than 0.");
-
+                return "Error: MaxLineLength needs to be more than zero.";
             //else if text parameter is empty
             } else if (text.isEmpty() || (text.trim().length() == 0)) {
                 //then return empty string
                 return "";
             //else if text parameter is not empty and max Line Length parameter is greater than 0
-            } else if (!text.isEmpty() && maxLineLength > 0) {
+            } else {
                 //then continue on
 
                 //Splits string on spaces and adds each "word" to stringList

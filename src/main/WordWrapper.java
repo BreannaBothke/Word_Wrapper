@@ -39,7 +39,7 @@ public class WordWrapper {
                 for (String s : maxLengthStringList) {
 
                     //appends '\n' to end of string
-                    String newString = s + "\n";
+                    String newString = s.trim() + "\n";
                     newLineString.append(newString);
 
                 }

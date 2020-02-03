@@ -13,6 +13,7 @@ public class WordWrapperTest {
 
     private static final int CONST_MAX_LINE_LENGTH_30 = 30;
     private static final int CONST_MAX_LINE_LENGTH_10 = 10;
+    private static final int CONST_MAX_LINE_LENGTH_5 = 5;
     private static final int CONST_ZERO_CHAR_COUNT = 0;
     private static final String CONST_STRING = "The fox jumped over the lazy dog.";
 
@@ -53,26 +54,49 @@ public class WordWrapperTest {
     @Test
     public void replaceSpaceWithNewLineCharacterAfter10MaxLineLength() {
 
+        //call wrap method, returns a string with newline characters
         String results = WordWrapper.wrap(CONST_STRING, CONST_MAX_LINE_LENGTH_10);
-        int count = 0;
+
+        //get first line of 10 characters
+        String stringOf10 = results.substring(0, CONST_MAX_LINE_LENGTH_10);
+        int count = 1;
+        int startOfLine = 0;
+        //index of first occurence of `\n`
+        int endOfLine = stringOf10.indexOf("\n");
+
+        //count number of `\n` instances in string
+        int numOfNewChars = countNewLineCharacters(results) + 1;
 
         //iterate through lines
-        while (count < results.length()) {
-            String line = results.substring(count, CONST_MAX_LINE_LENGTH_10);
+        while (count <= numOfNewChars) {
+            //get first line
+            String line = results.substring(startOfLine, endOfLine + 1);
+            System.out.println(line);
+
+            //set startOfLine to value of previous line endOfLine
+            startOfLine = endOfLine + 1;
+
+            //find end of next line
+            endOfLine += results.substring(startOfLine).indexOf("\n") + 1;
+
+            //increment count
+            count++;
 
             //Tests if there's a `\n` at the end of each line
-            assertEquals("\n", line.substring(line.length() - 2, line.length() - 1));
+            assertEquals("\n", line.substring(line.length() - 1));
 
             //Tests if `\n` is replacing spaces and not being appended after spaces
             //Length of string being passed in should match length of string being returned
-            assertEquals(CONST_STRING.length(), results.length());
+            assertEquals(CONST_STRING.length(), results.length() - 1);
 
-            //increment count by maxLineLength of 10
-            count += CONST_MAX_LINE_LENGTH_10;
         }
 
 
     }
+
+
+
+  
 
     //Should break the text into lines no longer than the max length
     @Test
@@ -147,6 +171,21 @@ public class WordWrapperTest {
 
     }
 
+
+    private int countNewLineCharacters(String string) {
+        int count = 0;
+        String[] temp = string.split(" ");
+
+        //Loops through list of strings
+        for (String s : temp) {
+            //if current string contains newline character
+            if (s.contains("\n"))
+                //increment count
+                count++;
+        }
+
+        return count;
+    }
 
     //Helper method that splits strings for tests.
     private List<String> createListOfStringsWithMaxLength(List<String> stringList, int maxLineLength) {
